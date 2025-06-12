@@ -38,12 +38,12 @@ class _MyHomePageState extends State<MyHomePage> {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       // Debug: In ra dữ liệu nhận được từ API
-      print('API response: ' + response.body);
+      print('API response: ${response.body}');
       // Nếu trả về List
       if (data is List) {
         return data.map<String>((user) {
           if (user is Map) {
-            final mapUser = Map<String, dynamic>.from(user as Map);
+            final mapUser = Map<String, dynamic>.from(user);
             return mapUser['username']?.toString() ?? 'Không có username';
           }
           return user.toString();
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         final users = data['users'] as List<dynamic>;
         return users.map<String>((user) {
           if (user is Map) {
-            final mapUser = Map<String, dynamic>.from(user as Map);
+            final mapUser = Map<String, dynamic>.from(user);
             return mapUser['username']?.toString() ?? 'Không có username';
           }
           return user.toString();
